@@ -1,0 +1,8 @@
+struct sign_post
+{
+	sign_post *prev, *next;
+	bool free;
+	size_t size;
+}
+
+sign_post* list;

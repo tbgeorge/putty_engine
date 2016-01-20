@@ -1,0 +1,582 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DebugInline|Win32">
+      <Configuration>DebugInline</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugInline|x64">
+      <Configuration>DebugInline</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Final|Win32">
+      <Configuration>Final</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Final|x64">
+      <Configuration>Final</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Common\EngineCommon.cpp" />
+    <ClCompile Include="Input\InputSystem.cpp" />
+    <ClCompile Include="Low-Level\Memory.cpp" />
+    <ClCompile Include="Low-Level\SignPostAllocator.cpp" />
+    <ClCompile Include="Math\AABB2D.cpp" />
+    <ClCompile Include="Math\AABB3D.cpp" />
+    <ClCompile Include="Math\DirectedLineSegment2D.cpp" />
+    <ClCompile Include="Math\DirectedLineSegment3D.cpp" />
+    <ClCompile Include="Math\Disc2D.cpp" />
+    <ClCompile Include="Math\FltRange.cpp" />
+    <ClCompile Include="Math\IcoSphereCreator.cpp" />
+    <ClCompile Include="Math\IntRange.cpp" />
+    <ClCompile Include="Math\IntVector2.cpp" />
+    <ClCompile Include="Math\IntVector3.cpp" />
+    <ClCompile Include="Math\Math2D.cpp" />
+    <ClCompile Include="Math\Math3D.cpp" />
+    <ClCompile Include="Math\MathUtils.cpp" />
+    <ClCompile Include="Math\Matrix4.cpp" />
+    <ClCompile Include="Math\Noise.cpp" />
+    <ClCompile Include="Math\PhysicsMotion2D.cpp" />
+    <ClCompile Include="Math\Sphere3D.cpp" />
+    <ClCompile Include="Math\Vector2.cpp" />
+    <ClCompile Include="Math\Vector3.cpp" />
+    <ClCompile Include="Multi-Threading\JobManager.cpp" />
+    <ClCompile Include="Multi-Threading\Locks.cpp" />
+    <ClCompile Include="Multi-Threading\Thread.cpp" />
+    <ClCompile Include="Networking\NetworkSystem.cpp" />
+    <ClCompile Include="Renderer\AnimatedTexture.cpp" />
+    <ClCompile Include="Renderer\FontRenderer.cpp" />
+    <ClCompile Include="Renderer\GraphicsDebugger.cpp" />
+    <ClCompile Include="Renderer\Lighting\PuttyLight.cpp" />
+    <ClCompile Include="Renderer\Material.cpp" />
+    <ClCompile Include="Renderer\PuttyMesh.cpp" />
+    <ClCompile Include="Renderer\MeshCreator.cpp" />
+    <ClCompile Include="Renderer\MeshRenderer.cpp" />
+    <ClCompile Include="Renderer\OGLRenderer.cpp" />
+    <ClCompile Include="Renderer\OpenGLRenderer.cpp" />
+    <ClCompile Include="Renderer\stb_image.c" />
+    <ClCompile Include="Renderer\Texture.cpp" />
+    <ClCompile Include="Sound\Sound.cpp" />
+    <ClCompile Include="Sound\SoundSystem.cpp" />
+    <ClCompile Include="Systems\Particles\ParticleEmitter.cpp" />
+    <ClCompile Include="Systems\Particles\ParticleManager.cpp" />
+    <ClCompile Include="Systems\Particles\Update_Strategies\ExplosionUpdateStrategy.cpp" />
+    <ClCompile Include="Systems\Particles\Update_Strategies\FountainUpdateStrategy.cpp" />
+    <ClCompile Include="Systems\Particles\Update_Strategies\SmokeUpdateStrategy.cpp" />
+    <ClCompile Include="UI\Button.cpp" />
+    <ClCompile Include="UI\Image.cpp" />
+    <ClCompile Include="UI\ProgressBar.cpp" />
+    <ClCompile Include="UI\TextBox.cpp" />
+    <ClCompile Include="UI\UIElement.cpp" />
+    <ClCompile Include="Utilities\BinaryBufferBuilder.cpp" />
+    <ClCompile Include="Utilities\BinaryBufferParser.cpp" />
+    <ClCompile Include="Utilities\BinaryFileParser.cpp" />
+    <ClCompile Include="Utilities\Console.cpp" />
+    <ClCompile Include="Utilities\DeveloperConsole.cpp" />
+    <ClCompile Include="Utilities\DeveloperConsoleCommands.cpp" />
+    <ClCompile Include="Utilities\Error.cpp" />
+    <ClCompile Include="Utilities\FileUtilities.cpp" />
+    <ClCompile Include="Utilities\Font.cpp" />
+    <ClCompile Include="Utilities\ModelLoader.cpp" />
+    <ClCompile Include="Utilities\Profiler.cpp" />
+    <ClCompile Include="Utilities\Rgba.cpp" />
+    <ClCompile Include="Utilities\StateMachine.cpp" />
+    <ClCompile Include="Utilities\StringTable.cpp" />
+    <ClCompile Include="Utilities\Time.cpp" />
+    <ClCompile Include="Utilities\Utilities.cpp" />
+    <ClCompile Include="Utilities\XMLHelper.cpp" />
+    <ClCompile Include="Utilities\XMLParser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common\EngineCommon.hpp" />
+    <ClInclude Include="Input\InputSystem.hpp" />
+    <ClInclude Include="Low-Level\Memory.hpp" />
+    <ClInclude Include="Low-Level\SignPostAllocator.hpp" />
+    <ClInclude Include="Math\AABB2D.hpp" />
+    <ClInclude Include="Math\AABB3D.hpp" />
+    <ClInclude Include="Math\DirectedLineSegment2D.hpp" />
+    <ClInclude Include="Math\DirectedLineSegment3D.hpp" />
+    <ClInclude Include="Math\Disc2D.hpp" />
+    <ClInclude Include="Math\EulerAngles.hpp" />
+    <ClInclude Include="Math\FltRange.hpp" />
+    <ClInclude Include="Math\IcoSphereCreator.hpp" />
+    <ClInclude Include="Math\IntVector2.hpp" />
+    <ClInclude Include="Math\IntVector3.hpp" />
+    <ClInclude Include="Math\Math2D.hpp" />
+    <ClInclude Include="Math\Math3D.hpp" />
+    <ClInclude Include="Math\MathUtils.hpp" />
+    <ClInclude Include="Math\Matrix4.hpp" />
+    <ClInclude Include="Math\Noise.hpp" />
+    <ClInclude Include="Math\PhysicsMotion2D.hpp" />
+    <ClInclude Include="Math\PhysicsMotion3D.hpp" />
+    <ClInclude Include="Math\IntRange.hpp" />
+    <ClInclude Include="Math\Sphere3D.hpp" />
+    <ClInclude Include="Math\StateVectors.hpp" />
+    <ClInclude Include="Math\Vector2.hpp" />
+    <ClInclude Include="Math\Vector3.hpp" />
+    <ClInclude Include="Math\Vector4.hpp" />
+    <ClInclude Include="Multi-Threading\JobManager.hpp" />
+    <ClInclude Include="Multi-Threading\Locks.hpp" />
+    <ClInclude Include="Multi-Threading\Thread.hpp" />
+    <ClInclude Include="Multi-Threading\ThreadSafeQueue.hpp" />
+    <ClInclude Include="Networking\NetworkSystem.hpp" />
+    <ClInclude Include="Renderer\AnimatedTexture.hpp" />
+    <ClInclude Include="Renderer\Camera3D.hpp" />
+    <ClInclude Include="Renderer\FontRenderer.hpp" />
+    <ClInclude Include="Renderer\geometry.h" />
+    <ClInclude Include="Renderer\GraphicsDebugger.hpp" />
+    <ClInclude Include="Renderer\Lighting\PuttyLight.hpp" />
+    <ClInclude Include="Renderer\Material.hpp" />
+    <ClInclude Include="Renderer\PuttyMesh.hpp" />
+    <ClInclude Include="Renderer\MeshCreator.hpp" />
+    <ClInclude Include="Renderer\MeshRenderer.hpp" />
+    <ClInclude Include="Renderer\OGLRenderer.hpp" />
+    <ClInclude Include="Renderer\OpenGLDefines.hpp" />
+    <ClInclude Include="Renderer\OpenGLRenderer.hpp" />
+    <ClInclude Include="Renderer\OpenGL\glcorearb.h" />
+    <ClInclude Include="Renderer\OpenGL\glext.h" />
+    <ClInclude Include="Renderer\OpenGL\glxext.h" />
+    <ClInclude Include="Renderer\OpenGL\wglext.h" />
+    <ClInclude Include="Renderer\stb_image_write.h" />
+    <ClInclude Include="Renderer\Texture.hpp" />
+    <ClInclude Include="Renderer\Uniforms.hpp" />
+    <ClInclude Include="Renderer\Vertex3D.hpp" />
+    <ClInclude Include="Sound\Sound.hpp" />
+    <ClInclude Include="Sound\SoundSystem.hpp" />
+    <ClInclude Include="Systems\Particles\Particle.hpp" />
+    <ClInclude Include="Systems\Particles\ParticleEmitter.hpp" />
+    <ClInclude Include="Systems\Particles\ParticleManager.hpp" />
+    <ClInclude Include="Systems\Particles\Render_Strategies\PointsRenderStrategy.hpp" />
+    <ClInclude Include="Systems\Particles\Update_Strategies\ExplosionUpdateStrategy.hpp" />
+    <ClInclude Include="Systems\Particles\Update_Strategies\FountainUpdateStrategy.hpp" />
+    <ClInclude Include="Systems\Particles\Update_Strategies\SmokeUpdateStrategy.hpp" />
+    <ClInclude Include="UI\Button.hpp" />
+    <ClInclude Include="UI\Image.hpp" />
+    <ClInclude Include="UI\ProgressBar.hpp" />
+    <ClInclude Include="UI\TextBox.hpp" />
+    <ClInclude Include="UI\UIElement.hpp" />
+    <ClInclude Include="Utilities\BinaryBufferBuilder.hpp" />
+    <ClInclude Include="Utilities\BinaryBufferParser.hpp" />
+    <ClInclude Include="Utilities\BinaryFileParser.hpp" />
+    <ClInclude Include="Utilities\Console.hpp" />
+    <ClInclude Include="Utilities\DeveloperConsole.hpp" />
+    <ClInclude Include="Utilities\DeveloperConsoleCommands.hpp" />
+    <ClInclude Include="Utilities\Error.hpp" />
+    <ClInclude Include="Utilities\FileUtilities.hpp" />
+    <ClInclude Include="Utilities\Font.hpp" />
+    <ClInclude Include="Utilities\ModelLoader.hpp" />
+    <ClInclude Include="Utilities\Profiler.hpp" />
+    <ClInclude Include="Utilities\Rgba.hpp" />
+    <ClInclude Include="Utilities\StateMachine.hpp" />
+    <ClInclude Include="Utilities\StringTable.hpp" />
+    <ClInclude Include="Utilities\Time.hpp" />
+    <ClInclude Include="Utilities\Utilities.hpp" />
+    <ClInclude Include="Utilities\XMLHelper.hpp" />
+    <ClInclude Include="Utilities\XMLParser.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D2A64492-6652-4846-9B1F-38617891F463}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Engine</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Final|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Final|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline|Win32'">
+    <OutDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline|x64'">
+    <OutDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IntDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline|Win32'">
+    <IntDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline|x64'">
+    <IntDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">
+    <OutDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final|x64'">
+    <OutDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IntDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">
+    <IntDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final|x64'">
+    <IntDir>$(SolutionDir)..\Temporary\$(ProjectName)_$(Platform)_$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\;$(SolutionDir)..\..\;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\..\;$(ProjectDir)Sound/cricket-1.4.2/inc;</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;glu32.lib;ws2_32.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\DebugStatic7</AdditionalLibraryDirectories>
+    </Lib>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <PreLinkEvent>
+      <Message>
+      </Message>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\;$(SolutionDir)..\..\;$(SolutionDir)..\..\..\;$(ProjectDir)Sound/cricket-1.4.2/inc;</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;ck.lib;glu32.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\DebugStatic7;</AdditionalLibraryDirectories>
+    </Lib>
+    <PreLinkEvent>
+      <Command>copy "$(SolutionDir)..\..\..\Engine\Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\DebugStatic7\ck.pdb" "$(OutDir)ck.pdb"</Command>
+    </PreLinkEvent>
+    <PreLinkEvent>
+      <Message>Copying ck.lib into output directory</Message>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\;$(SolutionDir)..\..\;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\..\;$(ProjectDir)Sound/cricket-1.4.2/inc;</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;glu32.lib;ws2_32.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\DebugStatic7</AdditionalLibraryDirectories>
+    </Lib>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\;$(SolutionDir)..\..\;$(SolutionDir)..\..\..\;$(ProjectDir)Sound/cricket-1.4.2/inc;</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;ck.lib;glu32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\DebugStatic7;</AdditionalLibraryDirectories>
+    </Lib>
+    <PreLinkEvent>
+      <Command>copy "$(SolutionDir)..\..\..\Engine\Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\DebugStatic7\ck.pdb" "$(OutDir)ck.pdb"</Command>
+      <Message>Copying ck.lib into output directory</Message>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\;$(SolutionDir)..\..\;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\..\;$(ProjectDir)Sound/cricket-1.4.2/inc;</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;glu32.lib;ws2_32.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\ReleaseStatic7</AdditionalLibraryDirectories>
+    </Lib>
+    <PreLinkEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\;$(SolutionDir)..\..\;$(SolutionDir)..\..\..\;$(ProjectDir)Sound/cricket-1.4.2/inc;</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;ck.lib;glu32.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\ReleaseStatic7;</AdditionalLibraryDirectories>
+    </Lib>
+    <PreLinkEvent>
+      <Message>Copying ck.lib into output directory</Message>
+      <Command>copy "$(SolutionDir)..\..\..\Engine\Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\ReleaseStatic7\ck.pdb" "$(OutDir)ck.pdb"</Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\;$(SolutionDir)..\..\;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\..\;$(ProjectDir)Sound/cricket-1.4.2/inc;</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;glu32.lib;ws2_32.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\ReleaseStatic7;</AdditionalLibraryDirectories>
+    </Lib>
+    <PreLinkEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Final|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\;$(SolutionDir)..\..\;$(SolutionDir)..\..\..\;$(ProjectDir)Sound/cricket-1.4.2/inc;</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;ck.lib;glu32.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\ReleaseStatic7;</AdditionalLibraryDirectories>
+    </Lib>
+    <PreLinkEvent>
+      <Message>Copying ck.lib into output directory</Message>
+      <Command>copy "$(SolutionDir)..\..\..\Engine\Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\ReleaseStatic7\ck.pdb" "$(OutDir)ck.pdb"</Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

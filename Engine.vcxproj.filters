@@ -1,0 +1,520 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Math">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{05ea9378-cf57-47f9-8463-6c5837134939}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{78076de9-54fa-4fce-98ab-482c4142ac5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{a6e0f194-fdaf-4f9a-85a0-e7d19e16b0c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{e416b0d9-698f-4775-a11f-a3637ab1d3ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{8e23f10a-bfe1-4370-8ec3-e4878d50d35f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems\Particles">
+      <UniqueIdentifier>{8171621b-041f-4802-a134-2218e01a874d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{620e81f9-08c0-4516-83c3-359f8bcafd9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems\Particles\Update_Strategies">
+      <UniqueIdentifier>{35ba2277-e3fc-4178-8e23-2dfe170b56db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems\Particles\Render_Strategies">
+      <UniqueIdentifier>{bbf0023b-0490-4b4d-9266-41c77cc1dd09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\OpenGL">
+      <UniqueIdentifier>{5b8594b1-5a7a-4a0e-92e9-c3e406771ac7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Lighting">
+      <UniqueIdentifier>{dc653da6-f2c7-4c75-8d0b-834e9945aebe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{59b62abd-400b-4a9a-ae8f-0dbb9215d701}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Multi-Threading">
+      <UniqueIdentifier>{ed46c7c3-5bd0-4d36-99ac-62e0039cbc17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Low-Level">
+      <UniqueIdentifier>{a5a32141-2eb0-4cd8-a7d8-462cc61cd8fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Networking">
+      <UniqueIdentifier>{707870f3-944e-475e-ab95-ff1f3266cac7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Math\AABB2D.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\AABB3D.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\DirectedLineSegment2D.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\DirectedLineSegment3D.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Disc2D.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Math2D.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Math3D.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\MathUtils.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Matrix4.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\PhysicsMotion2D.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Sphere3D.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vector2.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vector3.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\InputSystem.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\AnimatedTexture.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\OpenGLRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\stb_image.c">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Texture.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Console.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Rgba.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Time.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Utilities.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\Sound.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\SoundSystem.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\IntVector3.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Noise.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\FileUtilities.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\IntVector2.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\IcoSphereCreator.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\GraphicsDebugger.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\DeveloperConsole.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Font.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Particles\ParticleManager.cpp">
+      <Filter>Systems\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Particles\ParticleEmitter.cpp">
+      <Filter>Systems\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\EngineCommon.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Particles\Update_Strategies\FountainUpdateStrategy.cpp">
+      <Filter>Systems\Particles\Update_Strategies</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Particles\Update_Strategies\ExplosionUpdateStrategy.cpp">
+      <Filter>Systems\Particles\Update_Strategies</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Particles\Update_Strategies\SmokeUpdateStrategy.cpp">
+      <Filter>Systems\Particles\Update_Strategies</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\OGLRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\DeveloperConsoleCommands.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Material.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\MeshRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\MeshCreator.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\BinaryBufferParser.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\BinaryFileParser.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\XMLParser.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\FontRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\BinaryBufferBuilder.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\ModelLoader.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\IntRange.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\FltRange.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\XMLHelper.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\StringTable.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\PuttyMesh.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Lighting\PuttyLight.cpp">
+      <Filter>Renderer\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Button.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\TextBox.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Image.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Profiler.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Error.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Multi-Threading\Locks.cpp">
+      <Filter>Multi-Threading</Filter>
+    </ClCompile>
+    <ClCompile Include="Multi-Threading\Thread.cpp">
+      <Filter>Multi-Threading</Filter>
+    </ClCompile>
+    <ClCompile Include="Multi-Threading\JobManager.cpp">
+      <Filter>Multi-Threading</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UIElement.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Low-Level\Memory.cpp">
+      <Filter>Low-Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\StateMachine.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Low-Level\SignPostAllocator.cpp">
+      <Filter>Low-Level</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\ProgressBar.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Networking\NetworkSystem.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Math\AABB2D.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\AABB3D.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\DirectedLineSegment2D.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\DirectedLineSegment3D.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Disc2D.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\IntVector2.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Math2D.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Math3D.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\MathUtils.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix4.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\PhysicsMotion2D.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Sphere3D.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector2.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector3.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector4.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputSystem.hpp">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\AnimatedTexture.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\OpenGLRenderer.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Texture.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Console.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Rgba.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Time.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Utilities.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\Sound.hpp">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\SoundSystem.hpp">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\EulerAngles.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Camera3D.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\IntVector3.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Noise.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\FileUtilities.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\PhysicsMotion3D.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\geometry.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\IcoSphereCreator.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\GraphicsDebugger.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Vertex3D.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\DeveloperConsole.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\FontRenderer.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Font.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Particles\ParticleEmitter.hpp">
+      <Filter>Systems\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\StateVectors.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Particles\ParticleManager.hpp">
+      <Filter>Systems\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\EngineCommon.hpp">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Particles\Particle.hpp">
+      <Filter>Systems\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Particles\Update_Strategies\FountainUpdateStrategy.hpp">
+      <Filter>Systems\Particles\Update_Strategies</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Particles\Render_Strategies\PointsRenderStrategy.hpp">
+      <Filter>Systems\Particles\Render_Strategies</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Particles\Update_Strategies\ExplosionUpdateStrategy.hpp">
+      <Filter>Systems\Particles\Update_Strategies</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Particles\Update_Strategies\SmokeUpdateStrategy.hpp">
+      <Filter>Systems\Particles\Update_Strategies</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\OpenGL\glext.h">
+      <Filter>Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\OpenGL\glcorearb.h">
+      <Filter>Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\OpenGLDefines.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\OpenGL\glxext.h">
+      <Filter>Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\OpenGL\wglext.h">
+      <Filter>Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\OGLRenderer.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\DeveloperConsoleCommands.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Material.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Uniforms.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\MeshRenderer.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\MeshCreator.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\BinaryBufferParser.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\BinaryFileParser.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\XMLParser.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\BinaryBufferBuilder.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\ModelLoader.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\IntRange.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\FltRange.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\XMLHelper.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\StringTable.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\PuttyMesh.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Lighting\PuttyLight.hpp">
+      <Filter>Renderer\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Button.hpp">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\TextBox.hpp">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Image.hpp">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\StateMachine.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Profiler.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Error.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Multi-Threading\Locks.hpp">
+      <Filter>Multi-Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="Multi-Threading\JobManager.hpp">
+      <Filter>Multi-Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="Multi-Threading\ThreadSafeQueue.hpp">
+      <Filter>Multi-Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="Multi-Threading\Thread.hpp">
+      <Filter>Multi-Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\stb_image_write.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UIElement.hpp">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Low-Level\Memory.hpp">
+      <Filter>Low-Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Low-Level\SignPostAllocator.hpp">
+      <Filter>Low-Level</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\ProgressBar.hpp">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Networking\NetworkSystem.hpp">
+      <Filter>Networking</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
