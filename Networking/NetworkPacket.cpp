@@ -42,7 +42,7 @@ NetworkPacket::NetworkPacket( void* data, size_t dataLen, sockaddr* saddr, size_
 {
     ByteBuffer::Startup( m_buf, PACKET_MTU );
     WriteBytes( data, dataLen );
-    m_address->Startup( saddr, addrlen );
+    m_address = new NetworkAddress( saddr, addrlen );
 }
 
 ////===========================================================================================

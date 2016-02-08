@@ -85,6 +85,8 @@ NetworkPacket* NetworkPacketQueue::DequeueRead()
 {
     NetworkPacket* packet = nullptr;
     if (m_incoming.Dequeue( &packet ))
+    {
         return packet;
+    }
     return nullptr;
 }

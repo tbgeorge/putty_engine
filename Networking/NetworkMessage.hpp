@@ -38,6 +38,8 @@ public:
     ///---------------------------------------------------------------------------------
     NetworkMessage( uint8_t id );
     NetworkMessage( NetworkPacket& packet );
+    NetworkMessage( const NetworkMessage& copy );
+    ~NetworkMessage();
 
     ///---------------------------------------------------------------------------------
     /// Initialization
@@ -47,13 +49,13 @@ public:
     /// Mutators
     ///---------------------------------------------------------------------------------
     static void RegisterNetworkMessageDefinition( NetworkMessageDefinition* definition );
-    static void ProcessMessage( NetworkConnection* conn, NetworkMessage* msg );
+    static void ProcessMessage( NetworkSender sender, NetworkMessage* msg );
 
     ///---------------------------------------------------------------------------------
     /// Accessors
     ///---------------------------------------------------------------------------------
     NetworkMessageDefinition* FindMessageDefinitionById( uint8_t id );
-    NetworkMessageDefinition* GetDefinition() { return m_definition; }
+    NetworkMessageDefinition* GetDefinition() const { return m_definition; }
 
 private:
     ///---------------------------------------------------------------------------------
@@ -69,7 +71,7 @@ private:
 ///---------------------------------------------------------------------------------
 /// Typedefs
 ///---------------------------------------------------------------------------------
-typedef void( *NetworkMessageCallbackFunc )(NetworkConnection* conn, NetworkMessage& msg);
+typedef void( *NetworkMessageCallbackFunc )(NetworkSender sender, NetworkMessage& msg);
 
 ///---------------------------------------------------------------------------------
 /// NetworkMessageDefinition class
@@ -99,9 +101,9 @@ private:
 ///---------------------------------------------------------------------------------
 /// Defines
 ///---------------------------------------------------------------------------------
-#define NETWORK_MESSAGE_DEFINITION( id ) static void NetworkMessageCallback_##id##( NetworkConnection* conn, NetworkMessage& msg ); \
+#define NETWORK_MESSAGE_DEFINITION( id ) static void NetworkMessageCallback_##id##( NetworkSender sender, NetworkMessage& msg ); \
                                          static NetworkMessageDefinition MessageDefinition_##id##( (uint8_t)id, NetworkMessageCallback_##id## ); \
-                                         static void NetworkMessageCallback_##id##( NetworkConnection* conn, NetworkMessage& msg )
+                                         static void NetworkMessageCallback_##id##( NetworkSender sender, NetworkMessage& msg )
 
 ///---------------------------------------------------------------------------------
 ///

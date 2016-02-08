@@ -11,6 +11,7 @@
 ////===========================================================================================
 #include "Engine/Networking/NetworkConnection.hpp"
 #include "Engine/Networking/NetworkSession.hpp"
+#include "../Utilities/Time.hpp"
 
 ////===========================================================================================
 ///===========================================================================================
@@ -72,9 +73,17 @@ void NetworkConnection::Update()
 
     size_t totalRemainingSize = PACKET_MTU - (sizeof( uint16_t ) + sizeof( uint8_t ));
     size_t msgSize = 0;
-    unsigned char* data = new unsigned char[ totalRemainingSize ];
+    unsigned char* data = nullptr; 
 
     uint8_t numMsgs = 0;
+
+    if (m_outgoingMessages.size() > 0)
+        data = new unsigned char[totalRemainingSize];
+    else
+    {
+        delete packet;
+        return;
+    }
 
     for (NetworkMessages::iterator msgIter = m_outgoingMessages.begin(); msgIter != m_outgoingMessages.end(); )
     {
@@ -99,9 +108,10 @@ void NetworkConnection::Update()
     {
         packet->WriteBytes( (void*)&numMsgs, sizeof( uint8_t ) );
         packet->WriteBytes( (void*)data, msgSize );
+        m_owningSession->SendPacket( packet );
+
+        m_lastSendTime = Clock::GetMasterClock()->GetCurrentSeconds();
     }
 
-    m_owningSession->SendPacket( packet );
-    
-
+    delete data;
 }

@@ -13,6 +13,8 @@
 #include "Engine/Utilities/Error.hpp"
 #include "Engine/Utilities/DeveloperConsole.hpp"
 #include "NetworkConnection.hpp"
+#include "NetworkAddress.hpp"
+#include "NetworkSession.hpp"
 
 ////===========================================================================================
 ///===========================================================================================
@@ -64,6 +66,7 @@ NetworkMessageDefinition::NetworkMessageDefinition( uint8_t id, NetworkMessageCa
 ///---------------------------------------------------------------------------------
 NetworkMessage::NetworkMessage( uint8_t id )
     : m_definition( nullptr )
+    , m_buffer( nullptr )
 {
     m_definition = FindMessageDefinitionById( id );
     FATAL_ASSERT( m_definition != nullptr );
@@ -73,7 +76,8 @@ NetworkMessage::NetworkMessage( uint8_t id )
     ByteBuffer::Startup( m_buffer, MESSAGE_MTU );
 
     // write message id
-    m_writeIndex += 2;
+    uint16_t size = sizeof( uint16_t ) + sizeof( uint8_t );
+    WriteBytes( (void*)&size, sizeof( size ) );
     WriteBytes( (void*)&id, sizeof( id ) );
 }
 
@@ -82,6 +86,7 @@ NetworkMessage::NetworkMessage( uint8_t id )
 ///---------------------------------------------------------------------------------
 NetworkMessage::NetworkMessage( NetworkPacket& packet )
     : m_definition( nullptr )
+    , m_buffer( nullptr )
 {
     // get length and id
     uint16_t msgLen;
@@ -101,6 +106,30 @@ NetworkMessage::NetworkMessage( NetworkPacket& packet )
 
 
 
+}
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+NetworkMessage::NetworkMessage( const NetworkMessage& copy )
+    : m_definition( nullptr )
+    , m_buffer( nullptr )
+{
+    m_definition = copy.GetDefinition();
+
+    m_buffer = new unsigned char[MESSAGE_MTU];
+    ByteBuffer::Startup( m_buffer, MESSAGE_MTU );
+    WriteBytes( copy.m_buf, copy.GetLength() );
+
+}
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+NetworkMessage::~NetworkMessage()
+{
+    if (m_buffer != nullptr)
+        delete m_buffer;
 }
 
 ////===========================================================================================
@@ -128,10 +157,10 @@ void NetworkMessage::RegisterNetworkMessageDefinition( NetworkMessageDefinition*
 ///---------------------------------------------------------------------------------
 ///
 ///---------------------------------------------------------------------------------
-void NetworkMessage::ProcessMessage( NetworkConnection* conn, NetworkMessage* msg )
+void NetworkMessage::ProcessMessage( NetworkSender sender, NetworkMessage* msg )
 {
     NetworkMessageDefinition* def = msg->GetDefinition();
-    def->GetCallback()(conn, *msg);
+    def->GetCallback()(sender, *msg);
 
 }
 
@@ -171,6 +200,25 @@ NetworkMessageDefinition* NetworkMessage::FindMessageDefinitionById( uint8_t id 
 ///---------------------------------------------------------------------------------
 NETWORK_MESSAGE_DEFINITION( 0 )
 {
-    DeveloperConsole::WriteLine( INFO_TEXT_COLOR, "Ping received from %s", conn->GetAddress().GetAddrStr().c_str() );
+    DeveloperConsole::WriteLine( INFO_TEXT_COLOR, "Ping received from %s", sender.m_addr.GetAddrStr().c_str() );
     // send pong back
+
+    NetworkMessage* pongMsg = new NetworkMessage( 1 );
+    sender.m_session->SendDirectMessage( pongMsg, &sender.m_addr );
+}
+
+///---------------------------------------------------------------------------------
+/// Pong
+///---------------------------------------------------------------------------------
+NETWORK_MESSAGE_DEFINITION( 1 )
+{
+    DeveloperConsole::WriteLine( INFO_TEXT_COLOR, "Pong received from %s", sender.m_addr.GetAddrStr().c_str() );
+}
+
+///---------------------------------------------------------------------------------
+/// Heartbeat
+///---------------------------------------------------------------------------------
+NETWORK_MESSAGE_DEFINITION( 3 )
+{
+    DeveloperConsole::WriteLine( INFO_TEXT_COLOR, "Heartbeat recieved from %s", sender.m_addr.GetAddrStr().c_str() );
 }

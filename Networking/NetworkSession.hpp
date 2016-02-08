@@ -43,8 +43,9 @@ public:
     NetworkConnection* AddConnection( const NetworkAddress& addr );
 
     void SendPacket( NetworkPacket* packet );
-    void SendMessage( NetworkMessage& msg );
-
+    void SendNetworkMessage( const NetworkMessage& msg );
+    void SendDirectMessage( NetworkMessage* msg, NetworkAddress* addr );
+    void SetSendFrequency( float hz );
     void Update();
 
     ///---------------------------------------------------------------------------------
@@ -61,6 +62,9 @@ public:
     std::vector< NetworkConnection* > m_connections;
     NetworkConnection* m_hostConnection;
     bool m_listening;
+
+    float m_updateRate;
+    float m_lastTimeSent;
 };
 
 #endif

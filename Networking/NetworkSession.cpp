@@ -11,6 +11,8 @@
 ////===========================================================================================
 #include "Engine/Networking/NetworkSession.hpp"
 #include "Engine/Networking/NetworkPacketQueue.hpp"
+#include "../Utilities/Time.hpp"
+#include "Engine/Low-Level/Memory.hpp"
 
 ////===========================================================================================
 ///===========================================================================================
@@ -28,6 +30,8 @@
 ///
 ///---------------------------------------------------------------------------------
 NetworkSession::NetworkSession()
+    : m_lastTimeSent( 0.0f )
+    , m_updateRate( 1.0f )
 {
     m_packetQueue = new NetworkPacketQueue();
 }
@@ -46,6 +50,15 @@ NetworkSession::~NetworkSession()
         delete sock;
         sockiter = m_sockets.erase( sockiter );
     }
+
+    for (std::vector< NetworkConnection* >::iterator connIter = m_connections.begin(); connIter != m_connections.end(); )
+    {
+        NetworkConnection* conn = *connIter;
+        delete conn;
+        connIter = m_connections.erase( connIter );
+    }
+
+    delete m_hostConnection;
 
     // delete packet queue
     delete m_packetQueue;
@@ -97,16 +110,45 @@ NetworkConnection* NetworkSession::AddConnection( const NetworkAddress& addr )
 ///---------------------------------------------------------------------------------
 void NetworkSession::SendPacket( NetworkPacket* packet )
 {
-//     UNUSED( packet );
     m_packetQueue->EnqueueWrite( packet );
 }
 
 ///---------------------------------------------------------------------------------
 ///
 ///---------------------------------------------------------------------------------
-void NetworkSession::SendMessage( NetworkMessage& msg )
+void NetworkSession::SendNetworkMessage( const NetworkMessage& msg )
 {
-    UNUSED( msg );
+    for (std::vector< NetworkConnection* >::iterator connIter = m_connections.begin(); connIter != m_connections.end(); ++connIter)
+    {
+        NetworkConnection* conn = *connIter;
+        conn->SendNetworkMessage( new NetworkMessage( msg ) );
+    }
+}
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+void NetworkSession::SendDirectMessage( NetworkMessage* msg, NetworkAddress* addr )
+{
+    NetworkPacket* packet = new NetworkPacket();
+    packet->SetAddress( addr );
+
+    uint16_t ackID = 0;
+    packet->WriteBytes( (void*)&ackID, sizeof( uint16_t ) );
+
+    uint8_t numMsgs = 1;
+    packet->WriteBytes( (void*)&numMsgs, sizeof( uint8_t ) );
+    packet->WriteBytes( (void*)msg->m_buf, msg->GetLength() );
+
+    SendPacket( packet );
+}
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+void NetworkSession::SetSendFrequency( float hz )
+{
+    m_updateRate = 1.0f / hz;
 }
 
 ///---------------------------------------------------------------------------------
@@ -114,6 +156,12 @@ void NetworkSession::SendMessage( NetworkMessage& msg )
 ///---------------------------------------------------------------------------------
 void NetworkSession::Update()
 {
+    float currentTime = Clock::GetMasterClock()->GetCurrentSeconds();
+
+    float timeElapsed = currentTime - m_lastTimeSent;
+    if (timeElapsed < m_updateRate)
+        return;
+
     NetworkPacket* currentPacket = m_packetQueue->DequeueRead();
     while (currentPacket != nullptr)
     {
@@ -121,22 +169,21 @@ void NetworkSession::Update()
         bool valid = NetworkPacket::ValidatePacket( currentPacket, msgs );
 
         NetworkConnection* conn = FindConnection( *currentPacket->GetAddress() );
-        // connection exists
-        if (conn != nullptr)
+
+        NetworkSender sender( *currentPacket->GetAddress(), this, conn );
+
+        if (valid)
         {
-            if (valid)
+            for (NetworkMessages::iterator msgIter = msgs.begin(); msgIter != msgs.end(); ++msgIter)
             {
-                for (NetworkMessages::iterator msgIter = msgs.begin(); msgIter != msgs.end(); ++msgIter)
-                {
-                    NetworkMessage* msg = *msgIter;
-                    NetworkMessage::ProcessMessage( conn, msg );
-                }
+                NetworkMessage* msg = *msgIter;
+                NetworkMessage::ProcessMessage( sender, msg );
             }
         }
-        // else connection does not exist - create one?
 
 
         // get next packet
+        delete currentPacket;
         currentPacket = m_packetQueue->DequeueRead();
     }
 
@@ -145,6 +192,10 @@ void NetworkSession::Update()
         NetworkConnection* conn = *connIter;
         conn->Update();
     }
+
+    m_lastTimeSent = Clock::GetMasterClock()->GetCurrentSeconds();
+
+
 }
 
 ////===========================================================================================

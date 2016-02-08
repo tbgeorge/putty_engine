@@ -35,6 +35,11 @@ class SocketThread : public Thread
 
 public:
     ///---------------------------------------------------------------------------------
+    /// Constructors/Destructors
+    ///---------------------------------------------------------------------------------
+    ~SocketThread();
+
+    ///---------------------------------------------------------------------------------
     /// Startup
     ///---------------------------------------------------------------------------------
     void Startup( UDPSocket* owner, NetworkPacketQueue* queue, short port );
@@ -68,6 +73,14 @@ private:
 // SocketThread implementation
 ///===========================================================================================
 ////===========================================================================================
+
+///---------------------------------------------------------------------------------
+/// Constructors/Destructors
+///---------------------------------------------------------------------------------
+SocketThread::~SocketThread()
+{
+
+}
 
 ///---------------------------------------------------------------------------------
 /// Startup
@@ -206,7 +219,7 @@ void SocketThread::ProcessOutgoing()
     {
         NetworkAddress* address = packet->GetAddress();
         sendto( m_socket, (char*)packet->GetBuffer(), packet->GetLength(), 0, (sockaddr*)&address->m_addr, address->addrlen );
-        //delete packet;
+        delete packet;
 
         packet = m_packetQueue->DequeueWrite();
     }
@@ -250,6 +263,8 @@ UDPSocket::~UDPSocket()
 {
     m_serviceThread->Join();
     delete m_serviceThread;
+
+    delete m_boundAddress;
 }
 
 ////===========================================================================================

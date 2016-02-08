@@ -13,6 +13,8 @@
 ///---------------------------------------------------------------------------------
 #include <string>
 struct sockaddr;
+class NetworkSession;
+class NetworkConnection;
 
 ///---------------------------------------------------------------------------------
 ///
@@ -46,6 +48,16 @@ public:
     std::string m_addrStr;
     size_t addrlen;
 
+};
+
+struct NetworkSender
+{
+    NetworkAddress m_addr;
+    NetworkSession* m_session;
+    NetworkConnection* m_connection;
+
+    NetworkSender( const NetworkAddress& addr, NetworkSession* session, NetworkConnection* connection )
+        : m_addr( addr ), m_session( session ), m_connection( connection ) {}
 };
 
 #endif

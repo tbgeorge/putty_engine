@@ -46,7 +46,7 @@ void ByteBuffer::Startup( void* buffer, size_t maxSize )
 ///---------------------------------------------------------------------------------
 ///
 ///---------------------------------------------------------------------------------
-size_t ByteBuffer::GetLength()
+size_t ByteBuffer::GetLength() const
 {
     return m_writeIndex;
 }
