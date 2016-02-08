@@ -65,6 +65,7 @@ public:
     /// Static Mutators
     ///---------------------------------------------------------------------------------
     static void WriteLine( const std::string& text, const Rgba& color );
+    static void WriteLine( const Rgba& color, const char* messageFormat, ... );
     static void SetEnabled();
     static void SetDisabled();
     static bool IsEnabled();

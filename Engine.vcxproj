@@ -61,7 +61,14 @@
     <ClCompile Include="Multi-Threading\JobManager.cpp" />
     <ClCompile Include="Multi-Threading\Locks.cpp" />
     <ClCompile Include="Multi-Threading\Thread.cpp" />
+    <ClCompile Include="Networking\NetworkAddress.cpp" />
+    <ClCompile Include="Networking\NetworkConnection.cpp" />
+    <ClCompile Include="Networking\NetworkMessage.cpp" />
+    <ClCompile Include="Networking\NetworkPacket.cpp" />
+    <ClCompile Include="Networking\NetworkPacketQueue.cpp" />
+    <ClCompile Include="Networking\NetworkSession.cpp" />
     <ClCompile Include="Networking\NetworkSystem.cpp" />
+    <ClCompile Include="Networking\UDPSocket.cpp" />
     <ClCompile Include="Renderer\AnimatedTexture.cpp" />
     <ClCompile Include="Renderer\FontRenderer.cpp" />
     <ClCompile Include="Renderer\GraphicsDebugger.cpp" />
@@ -89,6 +96,7 @@
     <ClCompile Include="Utilities\BinaryBufferBuilder.cpp" />
     <ClCompile Include="Utilities\BinaryBufferParser.cpp" />
     <ClCompile Include="Utilities\BinaryFileParser.cpp" />
+    <ClCompile Include="Utilities\ByteBuffer.cpp" />
     <ClCompile Include="Utilities\Console.cpp" />
     <ClCompile Include="Utilities\DeveloperConsole.cpp" />
     <ClCompile Include="Utilities\DeveloperConsoleCommands.cpp" />
@@ -137,7 +145,15 @@
     <ClInclude Include="Multi-Threading\Locks.hpp" />
     <ClInclude Include="Multi-Threading\Thread.hpp" />
     <ClInclude Include="Multi-Threading\ThreadSafeQueue.hpp" />
+    <ClInclude Include="Networking\NetworkAddress.hpp" />
+    <ClInclude Include="Networking\NetworkConnection.hpp" />
+    <ClInclude Include="Networking\NetworkMessage.hpp" />
+    <ClInclude Include="Networking\NetworkPacket.hpp" />
+    <ClInclude Include="Networking\NetworkPacketQueue.hpp" />
+    <ClInclude Include="Networking\NetworkSession.hpp" />
     <ClInclude Include="Networking\NetworkSystem.hpp" />
+    <ClInclude Include="Networking\SocketThread.hpp" />
+    <ClInclude Include="Networking\UDPSocket.hpp" />
     <ClInclude Include="Renderer\AnimatedTexture.hpp" />
     <ClInclude Include="Renderer\Camera3D.hpp" />
     <ClInclude Include="Renderer\FontRenderer.hpp" />
@@ -176,6 +192,8 @@
     <ClInclude Include="Utilities\BinaryBufferBuilder.hpp" />
     <ClInclude Include="Utilities\BinaryBufferParser.hpp" />
     <ClInclude Include="Utilities\BinaryFileParser.hpp" />
+    <ClInclude Include="Utilities\BitArray.hpp" />
+    <ClInclude Include="Utilities\ByteBuffer.hpp" />
     <ClInclude Include="Utilities\Console.hpp" />
     <ClInclude Include="Utilities\DeveloperConsole.hpp" />
     <ClInclude Include="Utilities\DeveloperConsoleCommands.hpp" />
@@ -392,10 +410,12 @@
       <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\DebugStatic7;</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>
-      <Command>copy "$(SolutionDir)..\..\..\Engine\Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\DebugStatic7\ck.pdb" "$(OutDir)ck.pdb"</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
     <PreLinkEvent>
-      <Message>Copying ck.lib into output directory</Message>
+      <Message>
+      </Message>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline|Win32'">
@@ -452,8 +472,10 @@
       <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\DebugStatic7;</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>
-      <Command>copy "$(SolutionDir)..\..\..\Engine\Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\DebugStatic7\ck.pdb" "$(OutDir)ck.pdb"</Command>
-      <Message>Copying ck.lib into output directory</Message>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -512,8 +534,10 @@
       <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\ReleaseStatic7;</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>
-      <Message>Copying ck.lib into output directory</Message>
-      <Command>copy "$(SolutionDir)..\..\..\Engine\Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\ReleaseStatic7\ck.pdb" "$(OutDir)ck.pdb"</Command>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">
@@ -572,8 +596,10 @@
       <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\ReleaseStatic7;</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>
-      <Message>Copying ck.lib into output directory</Message>
-      <Command>copy "$(SolutionDir)..\..\..\Engine\Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\ReleaseStatic7\ck.pdb" "$(OutDir)ck.pdb"</Command>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

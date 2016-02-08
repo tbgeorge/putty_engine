@@ -268,6 +268,34 @@ void DeveloperConsole::WriteLine( const std::string& text, const Rgba& color )
     s_theDeveloperConsole->m_log.insert( s_theDeveloperConsole->m_log.begin(), newLine );
 }
 
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+void DeveloperConsole::WriteLine( const Rgba& color, const char* messageFormat, ... )
+{
+    static const size_t BUFFER_SIZE = 2048;
+    static char message[BUFFER_SIZE];
+
+    va_list argumentList;
+    va_start( argumentList, messageFormat );
+
+    _vsnprintf_s( message, BUFFER_SIZE, BUFFER_SIZE - 1, messageFormat, argumentList );
+
+    va_end( argumentList );
+
+    if (!s_theDeveloperConsole)
+    {
+        ConsolePrintf( message );
+        return;
+    }
+
+    Line newLine;
+    newLine.text = std::string( message );
+    newLine.color = color;
+
+    s_theDeveloperConsole->m_log.insert( s_theDeveloperConsole->m_log.begin(), newLine );
+}
+
 //===========================================================================================
 //===========================================================================================
 // Process Input

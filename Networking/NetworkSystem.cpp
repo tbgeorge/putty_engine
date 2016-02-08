@@ -9,13 +9,48 @@
 // Includes
 ///===========================================================================================
 ////===========================================================================================
-#include "NetworkSystem.hpp"
+#include "Engine/Networking/NetworkSystem.hpp"
+#include "Engine/Networking/NetworkSession.hpp"
+#include <WS2tcpip.h>
+
+////===========================================================================================
+///===========================================================================================
+// Static Variable Initialization
+///===========================================================================================
+////===========================================================================================
+NetworkSystem* NetworkSystem::s_theNetworkSystem = nullptr;
 
 ////===========================================================================================
 ///===========================================================================================
 // NetworkSystem Class
 ///===========================================================================================
 ////===========================================================================================
+
+////===========================================================================================
+///===========================================================================================
+// Constructors/Destructors
+///===========================================================================================
+////===========================================================================================
+
+///---------------------------------------------------------------------------------
+/// private
+///---------------------------------------------------------------------------------
+NetworkSystem::NetworkSystem()
+{
+
+}
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+NetworkSystem::~NetworkSystem()
+{
+    for (SessionMap::iterator sessionIter = m_sessions.begin(); sessionIter != m_sessions.end(); )
+    {
+        delete sessionIter->second;
+        sessionIter = m_sessions.erase( sessionIter );
+    }
+}
 
 ////===========================================================================================
 ///===========================================================================================
@@ -57,6 +92,17 @@ void NetworkSystem::Shutdown()
 ////===========================================================================================
 
 ///---------------------------------------------------------------------------------
+/// static
+///---------------------------------------------------------------------------------
+NetworkSystem* NetworkSystem::GetInstance()
+{
+    if (!s_theNetworkSystem)
+        s_theNetworkSystem = new NetworkSystem();
+
+    return s_theNetworkSystem;
+}
+
+///---------------------------------------------------------------------------------
 ///
 ///---------------------------------------------------------------------------------
 std::string NetworkSystem::GetLocalHostName()
@@ -79,7 +125,7 @@ std::string NetworkSystem::GetLocalHostName()
 ///---------------------------------------------------------------------------------
 ///
 ///---------------------------------------------------------------------------------
-addrinfo* NetworkSystem::GetAddressesForHost( const std::string& hostName, const char* service, int addrFamily /* = AF_UNSPCE */ )
+addrinfo* NetworkSystem::GetAddressesForHost( const std::string& hostName, const char* service, int addrFamily /* = AF_UNSPEC */ )
 {
     addrinfo hints;
     addrinfo* addr;
@@ -127,6 +173,21 @@ void NetworkSystem::ListAddressesForHost( const std::string& hostName, const cha
 ///---------------------------------------------------------------------------------
 ///
 ///---------------------------------------------------------------------------------
+NetworkAddress NetworkSystem::GetClientAddress( const std::string& hostName, const char* service, int addrFamily /* = AF_UNSPEC */ )
+{
+    addrinfo* hostAddresses = GetAddressesForHost( hostName, service, addrFamily );
+
+    NetworkAddress addr;
+    addr.Startup( hostAddresses->ai_addr, hostAddresses->ai_addrlen );
+
+    freeaddrinfo( hostAddresses );
+
+    return addr;
+}
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
 void* NetworkSystem::GetInAddress( sockaddr* socketAddress )
 {
     if (socketAddress->sa_family == AF_INET) {
@@ -135,6 +196,58 @@ void* NetworkSystem::GetInAddress( sockaddr* socketAddress )
     else {
         return &(((sockaddr_in6*)socketAddress)->sin6_addr);
     }
+}
+
+///---------------------------------------------------------------------------------
+/// returns nullptr if session does not exist
+///---------------------------------------------------------------------------------
+NetworkSession* NetworkSystem::DoesSessionExist( short port )
+{
+    SessionMap::const_iterator sessionIter = s_theNetworkSystem->m_sessions.find( port );
+    if (sessionIter != s_theNetworkSystem->m_sessions.end())
+        return sessionIter->second;
+
+    return nullptr;
+}
+
+////===========================================================================================
+///===========================================================================================
+// Mutators
+///===========================================================================================
+////===========================================================================================
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+NetworkSession* NetworkSystem::CreateSession( short port )
+{
+    NetworkSession* session = DoesSessionExist( port );
+
+    if (!session)
+    {
+        session = new NetworkSession();
+        m_sessions.insert( std::pair< short, NetworkSession* >( port, session ) );
+    }
+
+    return session;
+}
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+UDPSocket* NetworkSystem::CreateUDPSocket( NetworkPacketQueue* queue, short port )
+{
+    UDPSocket* sock = new UDPSocket( queue, port );
+    return sock;
+}
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+void NetworkSystem::FreeSocket( UDPSocket* sock )
+{
+    sock->Join();
+    delete sock;
 }
 
 ///---------------------------------------------------------------------------------
@@ -170,7 +283,7 @@ SOCKET NetworkSystem::StartHost( const std::string& hostName, const char* servic
             continue;
         }
 
-        // successfuly bound socket to address
+        // successfully bound socket to address
         printf( "%s: Socket bound to address: family[%i] type[%i] %s : %s\n", hostName.c_str(), iter->ai_family, iter->ai_socktype, addrName, service );
         break;
     }
