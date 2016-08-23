@@ -23,27 +23,42 @@ public:
     ///---------------------------------------------------------------------------------
     /// Constructors/Destructors
     ///---------------------------------------------------------------------------------
-    BitArray( int size );
-    ~BitArray();
+    BitArray( void* buffer, size_t len, bool initialValue );
 
     ///---------------------------------------------------------------------------------
     /// Accessors/Queries
     ///---------------------------------------------------------------------------------
-    bool IsSet( int index );
+    bool IsSet( size_t index );
     
     ///---------------------------------------------------------------------------------
     /// Mutators
     ///---------------------------------------------------------------------------------
-    void Set( int index );
-    void SetRange( int start, int end );
+    void Set( size_t index );
+    void Unset( size_t index );
+    void Reset( bool value );
 
 private:
     ///---------------------------------------------------------------------------------
     /// Private member variables
     ///---------------------------------------------------------------------------------
-
-
+    unsigned char* m_buffer;
+    size_t m_bufferLen;
 
 };
+
+template <size_t BIT_SIZE>
+class TBitArray : public BitArray
+{
+public:
+    TBitArray( bool initialValue )
+        : BitArray( m_fixedBuffer, (BIT_SIZE + 7) / 8, initialValue ) {}
+
+    TBitArray()
+        : BitArray( m_fixedBuffer, (BIT_SIZE + 7) / 8, false ) {}
+
+private:
+    unsigned char m_fixedBuffer[(BIT_SIZE + 7) / 8];
+};
+
 
 #endif

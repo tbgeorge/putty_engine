@@ -37,6 +37,10 @@ public:
 
     Vector4f GetAsVector4f() const;
 
+    ///---------------------------------------------------------------------------------
+    /// Mutators
+    ///---------------------------------------------------------------------------------
+    void SetAlpha( float alpha );
 
 	///---------------------------------------------------------------------------------
 	/// Operators
@@ -49,7 +53,7 @@ public:
     ///---------------------------------------------------------------------------------
     ///
     ///---------------------------------------------------------------------------------
-    friend const Rgba Interpolate( const Rgba& startColor, const Rgba& endColor, const float& fraction );
+//     friend const Rgba Interpolate( const Rgba& startColor, const Rgba& endColor, const float& fraction );
 
 	///---------------------------------------------------------------------------------
 	/// Public Member Variables
@@ -113,14 +117,14 @@ inline Rgba::Rgba( unsigned int r, unsigned int g, unsigned int b, unsigned int 
 ///---------------------------------------------------------------------------------
 ///
 ///---------------------------------------------------------------------------------
-inline const Rgba Interpolate( const Rgba& startColor, const Rgba& endColor, const float& fraction )
-{
-    float r = Interpolate( startColor.Rf(), endColor.Rf(), fraction );
-    float g = Interpolate( startColor.Gf(), endColor.Gf(), fraction );
-    float b = Interpolate( startColor.Bf(), endColor.Bf(), fraction );
-    float a = Interpolate( startColor.Af(), endColor.Af(), fraction );
-
-    return Rgba( r, g, b, a );
-}
+// inline const Rgba Interpolate( const Rgba& startColor, const Rgba& endColor, const float& fraction )
+// {
+//     float r = Interpolate( startColor.Rf(), endColor.Rf(), fraction );
+//     float g = Interpolate( startColor.Gf(), endColor.Gf(), fraction );
+//     float b = Interpolate( startColor.Bf(), endColor.Bf(), fraction );
+//     float a = Interpolate( startColor.Af(), endColor.Af(), fraction );
+// 
+//     return Rgba( r, g, b, a );
+// }
 
 #endif

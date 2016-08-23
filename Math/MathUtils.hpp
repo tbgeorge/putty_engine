@@ -61,6 +61,9 @@ float	Interpolate( float start, float end, float fractionFromStartToEnd );
 double  Interpolate( double start, double end, double fractionFromStartToEnd );
 int		Interpolate( int start, int end, int fractionFromStartToEnd );
 
+template< typename T >
+T Interpolate( const T& start, const T& end, float fractionFromStartToEnd );
+
 bool	AreFloatsEqual( float lhs, float rhs, float tolerance = 0.001 );
 
 #endif
@@ -101,12 +104,12 @@ inline float AsymptoticAdd( float normalizedValueA, float normalizedValueB )
 ///---------------------------------------------------------------------------------
 inline float RangeMap( float inValue, float inStart, float inEnd, float outStart, float outEnd )
 {
-	if( inEnd - inStart == 0.0f )
-		return 0.0f;
+    if (inEnd - inStart == 0.0f)
+        return 0.0f;
 
-	float ratio = ( inValue - inStart ) / ( inEnd - inStart );
-	float outValue = ratio * ( outEnd - outStart ) + outStart;
-	return outValue;
+    float ratio = (inValue - inStart) / (inEnd - inStart);
+    float outValue = ratio * (outEnd - outStart) + outStart;
+    return outValue;
 }
 
 
@@ -115,9 +118,9 @@ inline float RangeMap( float inValue, float inStart, float inEnd, float outStart
 ///---------------------------------------------------------------------------------
 inline bool IsPowerOfTwo( int x )
 {
-	if( x != 0 && x & ( x - 1 ) )
-		return true;
-	return false;
+    if (x != 0 && x & (x - 1))
+        return true;
+    return false;
 }
 
 ///---------------------------------------------------------------------------------
@@ -125,12 +128,12 @@ inline bool IsPowerOfTwo( int x )
 ///---------------------------------------------------------------------------------
 inline float Clamp( float inValue, float min, float max )
 {
-	if( inValue < min )
-		return min;
-	else if( inValue > max )
-		return max;
-	else 
-		return inValue;
+    if (inValue < min)
+        return min;
+    else if (inValue > max)
+        return max;
+    else
+        return inValue;
 }
 
 ///---------------------------------------------------------------------------------
@@ -138,7 +141,7 @@ inline float Clamp( float inValue, float min, float max )
 ///---------------------------------------------------------------------------------
 inline float SmoothStart( float normalizedValue )
 {
-	return ( normalizedValue * normalizedValue );
+    return (normalizedValue * normalizedValue);
 }
 
 ///---------------------------------------------------------------------------------
@@ -146,7 +149,7 @@ inline float SmoothStart( float normalizedValue )
 ///---------------------------------------------------------------------------------
 inline float SmoothStop( float normalizedValue )
 {
-	return 1 - ( ( 1 - normalizedValue ) * ( 1 - normalizedValue ) );
+    return 1 - ((1 - normalizedValue) * (1 - normalizedValue));
 }
 
 ///---------------------------------------------------------------------------------
@@ -154,11 +157,11 @@ inline float SmoothStop( float normalizedValue )
 ///---------------------------------------------------------------------------------
 inline float SmoothStep( float normalizedValue )
 {
-	//3t^2 - 2t^3
-	float normalizedValueSquared = normalizedValue * normalizedValue;
-	float firstPart = 3 * normalizedValueSquared;
-	float secondPart = 2 * (normalizedValueSquared * normalizedValue );
-	return firstPart - secondPart;
+    //3t^2 - 2t^3
+    float normalizedValueSquared = normalizedValue * normalizedValue;
+    float firstPart = 3 * normalizedValueSquared;
+    float secondPart = 2 * (normalizedValueSquared * normalizedValue);
+    return firstPart - secondPart;
 }
 
 ///---------------------------------------------------------------------------------
@@ -166,9 +169,9 @@ inline float SmoothStep( float normalizedValue )
 ///---------------------------------------------------------------------------------
 inline float Interpolate( float start, float end, float fractionFromStartToEnd )
 {
-	float difference = end - start;
-	float fractionOfWhole = difference * fractionFromStartToEnd;
-	return start + fractionOfWhole;
+    float difference = end - start;
+    float fractionOfWhole = difference * fractionFromStartToEnd;
+    return start + fractionOfWhole;
 }
 
 ///---------------------------------------------------------------------------------
@@ -176,9 +179,9 @@ inline float Interpolate( float start, float end, float fractionFromStartToEnd )
 ///---------------------------------------------------------------------------------
 inline double Interpolate( double start, double end, double fractionFromStartToEnd )
 {
-	double difference = end - start;
-	double fractionOfWhole = difference * fractionFromStartToEnd;
-	return start + fractionOfWhole;
+    double difference = end - start;
+    double fractionOfWhole = difference * fractionFromStartToEnd;
+    return start + fractionOfWhole;
 }
 
 ///---------------------------------------------------------------------------------
@@ -186,7 +189,17 @@ inline double Interpolate( double start, double end, double fractionFromStartToE
 ///---------------------------------------------------------------------------------
 inline int Interpolate( int start, int end, int fractionFromStartToEnd )
 {
-	int difference = end - start;
-	int fractionOfWhole = difference * fractionFromStartToEnd;
-	return start + fractionOfWhole;
+    int difference = end - start;
+    int fractionOfWhole = difference * fractionFromStartToEnd;
+    return start + fractionOfWhole;
+}
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+template< typename T >
+inline T Interpolate ( const T& start, const T& end, float fractionFromStartToEnd )
+{
+    return (( start * (1 - fractionFromStartToEnd)) + (end * fractionFromStartToEnd));
+//     return (start + ((end - start) * fractionFromStartToEnd));
 }

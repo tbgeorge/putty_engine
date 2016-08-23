@@ -802,7 +802,7 @@ void OpenGLRenderer::DrawVertexes( unsigned int programID, const PUC_Vertexes& v
 ///---------------------------------------------------------------------------------
 ///
 ///---------------------------------------------------------------------------------
-void OpenGLRenderer::DrawVertexesOrtho( unsigned int programID, const PUC_Vertexes& vertexes, GLenum drawMode )
+void OpenGLRenderer::DrawVertexesOrtho( unsigned int programID, const PUC_Vertexes& vertexes, GLenum drawMode, const Matrix4f& model /* = Matrix4f::CreateIdentity() */ )
 {
     if (programID == 0)
         programID = m_defaultShaderID;
@@ -821,7 +821,7 @@ void OpenGLRenderer::DrawVertexesOrtho( unsigned int programID, const PUC_Vertex
 
     ProgramBindMatrix( programID, "gView", Matrix4f::CreateIdentity() );
     ProgramBindMatrix( programID, "gProj", m_orthoProj );
-    ProgramBindMatrix( programID, "gModel", Matrix4f::CreateIdentity() );
+    ProgramBindMatrix( programID, "gModel", model );
 
     VertexLayout layout = Vertex3D_PUC::GetVertexLayout( vertexes );
     for (VertexLayout::const_iterator attribIter = layout.begin(); attribIter != layout.end(); ++attribIter)

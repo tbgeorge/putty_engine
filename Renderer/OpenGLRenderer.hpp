@@ -123,7 +123,7 @@ public:
 
     void DrawColoredQuad( unsigned int programID, const Vector2& mins, const Vector2& maxs, const float& z, const Rgba& faceColor );
     void DrawVertexes( unsigned int programID, const PUC_Vertexes& vertexes, GLenum drawMode );
-    void DrawVertexesOrtho( unsigned int programID, const PUC_Vertexes& vertexes, GLenum drawMode );
+    void DrawVertexesOrtho( unsigned int programID, const PUC_Vertexes& vertexes, GLenum drawMode, const Matrix4f& model = Matrix4f::CreateIdentity() );
 
         
     void DrawTexturedSphere( unsigned int programID, unsigned int samplerID, int debugInt, const Matrix4f& model, float radius, unsigned int slices, unsigned int stacks, Texture* texture = nullptr );

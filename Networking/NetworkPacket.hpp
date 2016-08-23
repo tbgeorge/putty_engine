@@ -20,6 +20,7 @@ class NetworkMessage;
 /// Constants
 ///---------------------------------------------------------------------------------
 const size_t PACKET_MTU = 1400;
+const uint16_t INVALID_ACK = 0xFFFF;
 
 ///---------------------------------------------------------------------------------
 /// Includes
@@ -36,6 +37,7 @@ public:
     /// Constructors/Destructors
     ///---------------------------------------------------------------------------------
     NetworkPacket();
+    NetworkPacket( NetworkAddress* address, uint16_t ackID, uint8_t connectionIndex = 0xFF );
     NetworkPacket( void* data, size_t dataLen, sockaddr* saddr, size_t addrlen );
 
     ///---------------------------------------------------------------------------------
@@ -50,6 +52,7 @@ public:
     /// Mutators
     ///---------------------------------------------------------------------------------
     void SetAddress( NetworkAddress* addr ) { m_address = addr; }
+    bool AddMessage( NetworkMessage* msg );
 
 private:
     ///---------------------------------------------------------------------------------
@@ -57,6 +60,9 @@ private:
     ///---------------------------------------------------------------------------------
     unsigned char m_buf[PACKET_MTU];
     NetworkAddress* m_address; // to or from, depending on usage
+    uint8_t m_connectionID;
+    uint16_t m_packetAck;
+    uint8_t m_numMessages;
 
 };
 

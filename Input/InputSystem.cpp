@@ -80,6 +80,7 @@ InputSystem::InputSystem()
 	, m_previousAddress( 0 )
 	, m_stickDeadzoneThreshold( 0.0f )
 	, m_isReadyToQuit( false )
+    , m_currentPointer( PT_ARROW )
 {
 	//ASSERT
 	if( !s_theInputSystem )
@@ -266,8 +267,26 @@ float InputSystem::GetXboxControllerTriggerMagnitude( XboxControllerTriggers tri
 ///---------------------------------------------------------------------------------
 void InputSystem::ResetMouseCursor()
 {
-    static HCURSOR defaultCursor = LoadCursor( NULL, IDC_ARROW );
-    SetCursor( defaultCursor );
+    HCURSOR cursor;
+
+    switch (m_currentPointer)
+    {
+    case PT_ARROW:
+        cursor = LoadCursor( NULL, IDC_ARROW );
+        break;
+    case PT_HAND:
+        cursor = LoadCursor( NULL, IDC_HAND );
+        break;
+    case PT_TEXT:
+        cursor = LoadCursor( NULL, IDC_IBEAM );
+        break;
+    case PT_WAIT:
+        cursor = LoadCursor( NULL, IDC_WAIT );
+        break;
+    default:
+        break;
+    }
+    SetCursor( cursor );
 }
 
 ///---------------------------------------------------------------------------------
@@ -375,6 +394,14 @@ bool InputSystem::IsMouseButtonDown( int button )
 bool InputSystem::WasMouseButtonJustReleased( int button )
 {
     return m_mouseButtonStates[button].m_wasJustReleased;
+}
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+void InputSystem::SetPointerType( PointerType type )
+{
+    m_currentPointer = type;
 }
 
 ///---------------------------------------------------------------------------------
@@ -570,6 +597,8 @@ float InputSystem::NormalizeXboxControllerTriggerValue(unsigned char triggerMagn
 ///---------------------------------------------------------------------------------
 void InputSystem::Update()
 {
+    ResetMouseCursor();
+
 	for( unsigned int keyIndex = 0; keyIndex < NUMBER_OF_VIRTUAL_KEYS; ++keyIndex )
 		m_keyDownStates[ keyIndex ].m_wasJustReleased = false;
 

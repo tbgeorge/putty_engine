@@ -66,6 +66,14 @@ enum MouseButtons
     MOUSE_RIGHT
 };
 
+enum PointerType
+{
+    PT_ARROW,
+    PT_HAND,
+    PT_TEXT,
+    PT_WAIT
+};
+
 ///---------------------------------------------------------------------------------
 ///
 ///---------------------------------------------------------------------------------
@@ -145,6 +153,11 @@ public:
 	bool			IsMouseButtonDown( int button );
     bool			WasMouseButtonJustReleased( int button );
 
+    ///---------------------------------------------------------------------------------
+    /// Mutators
+    ///---------------------------------------------------------------------------------
+    void SetPointerType( PointerType type );
+
 	///---------------------------------------------------------------------------------
 	/// Update Methods
 	///---------------------------------------------------------------------------------
@@ -185,6 +198,8 @@ private:
 	float				m_stickDeadzoneThreshold;
 	bool				m_isReadyToQuit;
 	int					m_numWheelClicks;
+
+    PointerType         m_currentPointer;
 
 };
 

@@ -8,6 +8,7 @@
 #include "Engine/Utilities/DeveloperConsoleCommands.hpp"
 #include "Engine/Utilities/Utilities.hpp"
 #include "Engine/Utilities/Console.hpp"
+#include "DeveloperConsole.hpp"
 
 ////===========================================================================================
 ///===========================================================================================
@@ -590,7 +591,7 @@ bool RunConsoleCommandFromLine( const std::string& line )
     Tokenize( lineLC, args, "( ,;)" );
 
     DeveloperConsoleArguments argsObj( args, 1 );
-
+    DeveloperConsole::WriteLine( line, INFO_TEXT_COLOR );
     return RunConsoleCommand( args[0], &argsObj );
 }
 

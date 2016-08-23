@@ -192,7 +192,11 @@ bool LoadTextFileToExistingBuffer( const std::string& filePath, char* existingBu
 bool LoadTextFileToExistingString( const std::string& filePath, std::string& existingString );
 char* LoadTextFileToNewBuffer( const std::string& filePath );
 
-bool FindAllFilesOfType( const std::string& directory, const std::string& searchString, Strings& out_filesFound );
+bool EnumerateFiles( const std::string& directory, const std::string& searchPattern, Strings& out_filesFound, bool recurseSubFolders );
+bool FindAllFilesOfType( const std::string& directory, const std::string& searchPattern, Strings& out_filesFound );
+bool FindAllFilesOfTypeRecursive( const std::string& directory, const std::string& searchPattern, Strings& out_filesFound );
+void FireEventForEachFileFound( const std::string& eventToFire, const std::string& directory, const std::string& searchPattern, bool recurseSubfolders );
+
 bool DoesFileExist( const std::string& filePath );
 bool DeleteFile_Relative( const std::string& filePath );
 bool CreateDirectory_Relative( const std::string& parentDirectory, const std::string& directoryName );

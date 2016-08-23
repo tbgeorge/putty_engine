@@ -83,11 +83,23 @@
     <ClCompile Include="Renderer\Texture.cpp" />
     <ClCompile Include="Sound\Sound.cpp" />
     <ClCompile Include="Sound\SoundSystem.cpp" />
+    <ClCompile Include="Systems\Events\EventReceiver.cpp" />
+    <ClCompile Include="Systems\Events\EventSubscriberBase.cpp" />
+    <ClCompile Include="Systems\Events\EventSystem.cpp" />
     <ClCompile Include="Systems\Particles\ParticleEmitter.cpp" />
     <ClCompile Include="Systems\Particles\ParticleManager.cpp" />
     <ClCompile Include="Systems\Particles\Update_Strategies\ExplosionUpdateStrategy.cpp" />
     <ClCompile Include="Systems\Particles\Update_Strategies\FountainUpdateStrategy.cpp" />
     <ClCompile Include="Systems\Particles\Update_Strategies\SmokeUpdateStrategy.cpp" />
+    <ClCompile Include="Systems\UI\BaseWidget.cpp" />
+    <ClCompile Include="Systems\UI\ButtonWidget.cpp" />
+    <ClCompile Include="Systems\UI\CheckboxWidget.cpp" />
+    <ClCompile Include="Systems\UI\GroupWidget.cpp" />
+    <ClCompile Include="Systems\UI\LabelWidget.cpp" />
+    <ClCompile Include="Systems\UI\ProgressBarWidget.cpp" />
+    <ClCompile Include="Systems\UI\UISystem.cpp" />
+    <ClCompile Include="Systems\UI\UIWindow.cpp" />
+    <ClCompile Include="Systems\UI\WidgetPropertyLayer.cpp" />
     <ClCompile Include="UI\Button.cpp" />
     <ClCompile Include="UI\Image.cpp" />
     <ClCompile Include="UI\ProgressBar.cpp" />
@@ -96,6 +108,7 @@
     <ClCompile Include="Utilities\BinaryBufferBuilder.cpp" />
     <ClCompile Include="Utilities\BinaryBufferParser.cpp" />
     <ClCompile Include="Utilities\BinaryFileParser.cpp" />
+    <ClCompile Include="Utilities\BitArray.cpp" />
     <ClCompile Include="Utilities\ByteBuffer.cpp" />
     <ClCompile Include="Utilities\Console.cpp" />
     <ClCompile Include="Utilities\DeveloperConsole.cpp" />
@@ -104,6 +117,7 @@
     <ClCompile Include="Utilities\FileUtilities.cpp" />
     <ClCompile Include="Utilities\Font.cpp" />
     <ClCompile Include="Utilities\ModelLoader.cpp" />
+    <ClCompile Include="Utilities\NamedProperties.cpp" />
     <ClCompile Include="Utilities\Profiler.cpp" />
     <ClCompile Include="Utilities\Rgba.cpp" />
     <ClCompile Include="Utilities\StateMachine.cpp" />
@@ -177,6 +191,12 @@
     <ClInclude Include="Renderer\Vertex3D.hpp" />
     <ClInclude Include="Sound\Sound.hpp" />
     <ClInclude Include="Sound\SoundSystem.hpp" />
+    <ClInclude Include="Systems\Events\EventReceiver.hpp" />
+    <ClInclude Include="Systems\Events\EventSubscriber.hpp" />
+    <ClInclude Include="Systems\Events\EventSubscriberBase.hpp" />
+    <ClInclude Include="Systems\Events\EventSystem.hpp" />
+    <ClInclude Include="Systems\Events\TypedProperty.hpp" />
+    <ClInclude Include="Systems\Events\TypedPropertyBase.hpp" />
     <ClInclude Include="Systems\Particles\Particle.hpp" />
     <ClInclude Include="Systems\Particles\ParticleEmitter.hpp" />
     <ClInclude Include="Systems\Particles\ParticleManager.hpp" />
@@ -184,6 +204,16 @@
     <ClInclude Include="Systems\Particles\Update_Strategies\ExplosionUpdateStrategy.hpp" />
     <ClInclude Include="Systems\Particles\Update_Strategies\FountainUpdateStrategy.hpp" />
     <ClInclude Include="Systems\Particles\Update_Strategies\SmokeUpdateStrategy.hpp" />
+    <ClInclude Include="Systems\UI\BaseWidget.hpp" />
+    <ClInclude Include="Systems\UI\ButtonWidget.hpp" />
+    <ClInclude Include="Systems\UI\CheckboxWidget.hpp" />
+    <ClInclude Include="Systems\UI\GroupWidget.hpp" />
+    <ClInclude Include="Systems\UI\LabelWidget.hpp" />
+    <ClInclude Include="Systems\UI\ProgressBarWidget.hpp" />
+    <ClInclude Include="Systems\UI\UIStyle.hpp" />
+    <ClInclude Include="Systems\UI\UISystem.hpp" />
+    <ClInclude Include="Systems\UI\UIWindow.hpp" />
+    <ClInclude Include="Systems\UI\WidgetPropertyLayer.hpp" />
     <ClInclude Include="UI\Button.hpp" />
     <ClInclude Include="UI\Image.hpp" />
     <ClInclude Include="UI\ProgressBar.hpp" />
@@ -201,11 +231,15 @@
     <ClInclude Include="Utilities\FileUtilities.hpp" />
     <ClInclude Include="Utilities\Font.hpp" />
     <ClInclude Include="Utilities\ModelLoader.hpp" />
+    <ClInclude Include="Utilities\NamedProperties.hpp" />
     <ClInclude Include="Utilities\Profiler.hpp" />
     <ClInclude Include="Utilities\Rgba.hpp" />
     <ClInclude Include="Utilities\StateMachine.hpp" />
     <ClInclude Include="Utilities\StringTable.hpp" />
     <ClInclude Include="Utilities\Time.hpp" />
+    <ClInclude Include="Utilities\TypedAnimatedKeyFrameSequence.hpp" />
+    <ClInclude Include="Utilities\TypedKeyFrame.hpp" />
+    <ClInclude Include="Utilities\TypedKeyFrameSequence.hpp" />
     <ClInclude Include="Utilities\Utilities.hpp" />
     <ClInclude Include="Utilities\XMLHelper.hpp" />
     <ClInclude Include="Utilities\XMLParser.h" />
@@ -406,7 +440,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;ck.lib;glu32.lib;</AdditionalDependencies>
+      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;glu32.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\DebugStatic7;</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>
@@ -468,7 +502,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;ck.lib;glu32.lib</AdditionalDependencies>
+      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;glu32.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\DebugStatic7;</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>
@@ -530,7 +564,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;ck.lib;glu32.lib;</AdditionalDependencies>
+      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;glu32.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\ReleaseStatic7;</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>
@@ -592,7 +626,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;ck.lib;glu32.lib;</AdditionalDependencies>
+      <AdditionalDependencies>XINPUT9_1_0.lib;opengl32.lib;glu32.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)Sound\cricket-1.4.2\lib\win\vs$(VisualStudioVersion)\$(PlatformShortName)\ReleaseStatic7;</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>

@@ -21,6 +21,7 @@
 #include <io.h>
 #include "Console.hpp"
 #include "Error.hpp"
+#include "Utilities.hpp"
 
 
 ////===========================================================================================
@@ -523,7 +524,18 @@ char* LoadTextFileToNewBuffer( const std::string& filePath )
 ///---------------------------------------------------------------------------------
 ///
 ///---------------------------------------------------------------------------------
-bool FindAllFilesOfType( const std::string& directory, const std::string& searchPattern, Strings& out_filesFound )
+bool EnumerateFiles( const std::string& directory, const std::string& searchPattern, Strings& out_filesFound, bool recurseSubFolders )
+{
+    if (recurseSubFolders)
+        return FindAllFilesOfTypeRecursive( directory, searchPattern, out_filesFound );
+    else
+        return FindAllFilesOfType( directory, searchPattern, out_filesFound );
+}
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+bool FindAllFilesOfType( const std::string& directory, const std::string& searchPattern, Strings& out_filesFound  )
 {
 #ifdef WIN32
 
@@ -536,7 +548,7 @@ bool FindAllFilesOfType( const std::string& directory, const std::string& search
     {
         do
         {
-            ConsolePrintf( "%s\n", fd.name );
+//             ConsolePrintf( "%s  %i\n", (directory + std::string(fd.name)).c_str(), fd.attrib );
             out_filesFound.push_back( directory + std::string( fd.name ) );
         } while (_findnext( searchHandle, &fd ) == 0);
 
@@ -551,6 +563,81 @@ bool FindAllFilesOfType( const std::string& directory, const std::string& search
 #endif
 
 
+}
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+bool FindAllFilesOfTypeRecursive( const std::string& directory, const std::string& searchPattern, Strings& out_filesFound )
+{
+#ifdef WIN32
+
+    _finddata_t fd;
+
+    std::string searchPath = directory + "*";
+    intptr_t searchHandle = _findfirst( searchPath.c_str(), &fd );
+
+    if (searchHandle != -1)
+    {
+        do
+        {
+            if (fd.attrib & _A_SUBDIR && strcmp( fd.name, ".." ) != 0 /*&& strcmp( fd.name, "." )*/ )
+            {
+                if (strcmp( fd.name, "." ) == 0 )
+                {
+                    FindAllFilesOfType( directory, searchPattern, out_filesFound );
+                }
+                else
+                {
+                    FindAllFilesOfTypeRecursive( directory + fd.name + "/", searchPattern, out_filesFound );
+//                     ConsolePrintf( "Recursive: %s\n", fd.name );
+                }
+            }
+        } while (_findnext( searchHandle, &fd ) == 0);
+
+    }
+    else return false;
+
+    if (_findclose( searchHandle ) == 0 && out_filesFound.size() != 0)
+        return true;
+    return false;
+#else
+    return false;
+#endif
+
+}
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+void FireEventForEachFileFound( const std::string& eventToFire, const std::string& directory, const std::string& searchPattern, bool recurseSubfolders )
+{
+    Strings files;
+    EnumerateFiles( directory, searchPattern, files, recurseSubfolders );
+
+    for (std::string& file : files)
+    {
+        std::string fileWithoutPath = ExtractFileNameFromPath( file );
+        std::string fileName = RemoveFileExtension( fileWithoutPath );
+        Strings fileNameTokens;
+        Tokenize( fileWithoutPath, fileNameTokens, "." );
+        std::string fileExtension = "." + fileNameTokens[1];
+        std::string relativePath = ConvertBackSlashesToForwardSlashes( file );
+        char fullPath[_MAX_PATH];
+        _fullpath( fullPath, relativePath.c_str(), _MAX_PATH );
+        std::string fullFilePath = ConvertBackSlashesToForwardSlashes( std::string( fullPath ) );
+
+        ConsolePrintf( "File without path:  %s\n File Name: %s\n File Extension: %s\n File Relative: %s\n File Absolute: %s\n", fileWithoutPath.c_str(), fileName.c_str(), fileExtension.c_str(), relativePath.c_str(), fullFilePath.c_str() );
+
+        NamedProperties props;
+        props.Set( "FileName", fileWithoutPath );
+        props.Set( "FileExtension", fileExtension );
+        props.Set( "FileNameWithoutExtension", fileName );
+        props.Set( "FileRelativePath", relativePath );
+        props.Set( "FileAbsolutePath", fullFilePath );
+
+        FireEvent( eventToFire, props );
+    }
 }
 
 ///---------------------------------------------------------------------------------

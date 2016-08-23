@@ -11,6 +11,7 @@
 ////===========================================================================================
 #include "Engine/Utilities/ByteBuffer.hpp"
 #include <memory.h>
+#include <string.h>
 
 ////===========================================================================================
 ///===========================================================================================
@@ -77,6 +78,37 @@ size_t ByteBuffer::ReadBytes( void* out_data, size_t size )
     return amtToRead;
 }
 
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+size_t ByteBuffer::ReadString( char*& out_str )
+{
+    char* str = (char*)(m_buf + m_readIndex);
+    char* curr = str;
+    size_t remainingData = m_maxSize - m_readIndex;
+    size_t i = 0;
+    while ((*curr != NULL) && (i < remainingData))
+    {
+        ++curr;
+        ++i;
+    }
+
+    if (*curr != NULL)
+    {
+        out_str = nullptr;
+        return 0; // not a valid string, never null terminated
+    }
+    else
+    {
+        m_readIndex += i + 1;
+        out_str = str;
+        return i + 1;
+    }
+
+}
+
+
+
 ////===========================================================================================
 ///===========================================================================================
 // Mutators
@@ -99,10 +131,8 @@ void ByteBuffer::SetLength( size_t len )
 ///---------------------------------------------------------------------------------
 bool ByteBuffer::WriteBytes( void* data, size_t size )
 {
-    size_t spaceRemaining = m_maxSize - m_writeIndex;
-
     // can write
-    if (size <= spaceRemaining)
+    if (size <= GetRemainingSize())
     {
         unsigned char* writeStart = m_buf + m_writeIndex;
         memcpy( writeStart, data, size );
@@ -114,4 +144,24 @@ bool ByteBuffer::WriteBytes( void* data, size_t size )
     // can't write
     else
         return false;
+}
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+bool ByteBuffer::WriteByte( unsigned char byte )
+{
+    return WriteBytes( (void*)&byte, 1 );
+}
+
+///---------------------------------------------------------------------------------
+///
+///---------------------------------------------------------------------------------
+bool ByteBuffer::WriteString( const char* str )
+{
+    size_t len = strlen( str );
+    if (len > 0)
+        WriteBytes( (void*)str, len );
+
+    return WriteByte( 0 );
 }

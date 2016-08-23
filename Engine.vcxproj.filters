@@ -50,6 +50,12 @@
     <Filter Include="Networking">
       <UniqueIdentifier>{707870f3-944e-475e-ab95-ff1f3266cac7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\Events">
+      <UniqueIdentifier>{b2ae4bb7-e85b-4cf8-a8a4-2f7e9e65a4fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems\UI">
+      <UniqueIdentifier>{99157085-54d0-48e5-bab1-5c02e9f1c136}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\AABB2D.cpp">
@@ -282,6 +288,48 @@
     </ClCompile>
     <ClCompile Include="Networking\NetworkConnection.cpp">
       <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\BitArray.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Events\EventSystem.cpp">
+      <Filter>Systems\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Events\EventSubscriberBase.cpp">
+      <Filter>Systems\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\NamedProperties.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Events\EventReceiver.cpp">
+      <Filter>Systems\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\UI\ButtonWidget.cpp">
+      <Filter>Systems\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\UI\BaseWidget.cpp">
+      <Filter>Systems\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\UI\UISystem.cpp">
+      <Filter>Systems\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\UI\GroupWidget.cpp">
+      <Filter>Systems\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\UI\UIWindow.cpp">
+      <Filter>Systems\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\UI\WidgetPropertyLayer.cpp">
+      <Filter>Systems\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\UI\LabelWidget.cpp">
+      <Filter>Systems\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\UI\ProgressBarWidget.cpp">
+      <Filter>Systems\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\UI\CheckboxWidget.cpp">
+      <Filter>Systems\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -569,6 +617,66 @@
     </ClInclude>
     <ClInclude Include="Networking\NetworkMessage.hpp">
       <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Events\EventSystem.hpp">
+      <Filter>Systems\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\NamedProperties.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Events\TypedPropertyBase.hpp">
+      <Filter>Systems\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Events\TypedProperty.hpp">
+      <Filter>Systems\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Events\EventSubscriberBase.hpp">
+      <Filter>Systems\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Events\EventSubscriber.hpp">
+      <Filter>Systems\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Events\EventReceiver.hpp">
+      <Filter>Systems\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\UI\UISystem.hpp">
+      <Filter>Systems\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\UI\BaseWidget.hpp">
+      <Filter>Systems\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\UI\ButtonWidget.hpp">
+      <Filter>Systems\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\TypedKeyFrame.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\TypedKeyFrameSequence.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\TypedAnimatedKeyFrameSequence.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\UI\GroupWidget.hpp">
+      <Filter>Systems\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\UI\UIWindow.hpp">
+      <Filter>Systems\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\UI\LabelWidget.hpp">
+      <Filter>Systems\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\UI\ProgressBarWidget.hpp">
+      <Filter>Systems\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\UI\CheckboxWidget.hpp">
+      <Filter>Systems\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\UI\UIStyle.hpp">
+      <Filter>Systems\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\UI\WidgetPropertyLayer.hpp">
+      <Filter>Systems\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

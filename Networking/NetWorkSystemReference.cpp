@@ -1,68 +1,102 @@
-// First, Broadcast Example
-typedef unsigned char byte_t;
 
-CNetSystem; // This controls startup/shutdown engine tasks (WSAInit, WSACleanup, managing threads, managing jobs)
+// Step 1: Add a check for disconnect method
+// Step 2: Implement CheckForDisconnect
+// Step 3: Add appropriate members methods
+// Step 4: Update last recieved
 
-CNetSession; // This is a collection of connections, for what they are logically
+// HEARTBEAT
+// Step 1: In NetworkTick - check if we should send a heartbeat
+// Step 2: Define a heartbeat message
 
-CNetConnection; // All connection based info - identifier, flow control, owning session, etc...
+#define cMessage_Ping 0
+#define cMessgae_Pong 1
+#define cMessage_Heartbeat 2
 
-CNetPacket; // Byte Buffer of message we get and send to the socket, made up of messages
-
-CNetMessage; // Single concept that is sent over, references a CNetMessageDefinition
-
-CNetMessageDefinition; // Callback, options, etc for a net message
-
-CByteBuffer; // Utility for writing to an array of bytes
-
-CObjectPool; // Optimization - used for allocating and deallocating messages and packets
-
-CPacketQueue; // Thread safe queue for both read & write of packets to a socket
-
-// Internal
-CUDPSocket; // wraps a single UDPSocket
-
-CSocketWriteThread; // 
-
-CSocketReadThread; //
-
-
-
-
-void CGame::StartHosting( short port )
+// Should already exist - called on a network tick per connection
+void NetworkConnection::NetworkTick()
 {
-	NetworkSystem* sys = NetworkSystem::GetInstance();
-	NetworkSession* session = sys->CreateSession();
-
-	if( session->host(port)) 
+	this->CheckForDisconnect();
+	if( !this->IsConnected() )
 	{
-		m_gameSession = session;
-		ConsolePrintf( "Game Hosted: ..." );
-		m_gameSession->listen( true );
-		
+		return;
+	}
+
+	if( ShouldSendHeartbeat() ) 
+	{
+		SendHeartbeat();
+	}
+
+	this->SendPacket();
+}
+
+void NetworkConnection::ProcessPacket( NetworkPacket& packet )
+{
+	m_timeLastReceivedPacket = TimeGetSeconds();
+}
+
+// NEW
+void NetworkConnection::CheckForDisconnect()
+{
+	if( IsMe() )
+	{
+		return;
+	}
+
+	double currentTime = TimeGetSeconds();
+	double age = currentTime - this->TimeLastReceivedPacket;
+	if( age > CONNECTION_TIMEOUT )
+	{
+		SetState( eConnectionState_Disconnected );
 	}
 }
 
-
-
-
-
-
-
-Connection::NetworkTick()
+// NEW
+bool NetworkConnection::ShouldSendHeartbeat()
 {
-	msg* to_send;
-	if( reliable )
-		msg.reliable_id = next_reliable_id++;
+	if( IsMe() )
+	{
+		return false;
+	}
 
-	packet.add( msg );
+	double currentTime = TimeGetSeconds();
+	double age = currentTime - this->m_timeLastSentHeartbeat;
+	if( age > CONNECTION_HEARTBEAT_TIME )
+	{
+		return true;
+	}
+	return false;
 }
 
-T CycleMax<T>( T a, T b )
+void NetworkConnection::SendHeartbeat()
 {
-	T d = a - b;
-	if( d < ( MAX_VALUE( T ) / (T)2 ) )
-		return a;
-	else
-		return b;
+	// However you send messages to your connection
+	NetworkMessage msg( /* Heartbeat ID */ );
+	this->SendMessage( msg );
+
+	// Update clock
+	m_timeLastSentHeartbeat = TimeGetSeconds();
+}
+
+//======= HEADER FILE =========================================//
+double const CONNECTION_TIMEOUT = 30.0;
+double const CONNECTION_HEARTBEAT_TIME = 2.5;
+
+enum eConnectionState
+{
+	eConnectionState_Connected, // starts in this state
+	eConnectionState_Disconnected,
+};
+
+class NetworkConnection
+{
+	// Things we need to add for this to work
+	double m_timeLastReceivedPacket;
+	double m_timeLastSentHeartbeat;
+	eConnectionState m_state;
+
+	void CheckForDisconnect();
+	void SetState( eConnectionState state ) { m_state = state; }
+
+	bool IsMe() const { return m_session->me == this; } // How Forseth implemented this
+
 }

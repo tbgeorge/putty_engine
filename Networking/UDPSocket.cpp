@@ -92,10 +92,9 @@ void SocketThread::Startup( UDPSocket* owner, NetworkPacketQueue* queue, short p
     m_packetQueue = queue;
     m_owner = owner;
 
-    NetworkSystem* sys = NetworkSystem::GetInstance();
     std::string portStr = std::to_string( m_port );
     const char* service = portStr.c_str();
-    addrinfo* hostAddresses = sys->GetAddressesForHost( sys->GetLocalHostName(), service, AF_INET );
+    addrinfo* hostAddresses = NetworkSystem::GetAddressesForHost( NetworkSystem::GetLocalHostName(), service, AF_INET );
 
     addrinfo* iter = hostAddresses;
     m_owner->SetAddress( new NetworkAddress( iter->ai_addr, iter->ai_addrlen ) );
@@ -122,15 +121,14 @@ void SocketThread::Run()
 ///---------------------------------------------------------------------------------
 void SocketThread::SetupSocket()
 {
-    NetworkSystem* sys = NetworkSystem::GetInstance();
     std::string portStr = std::to_string( m_port );
     const char* service = portStr.c_str();
-    addrinfo* hostAddresses = sys->GetAddressesForHost( sys->GetLocalHostName(), service, AF_INET );
+    addrinfo* hostAddresses = NetworkSystem::GetAddressesForHost( NetworkSystem::GetLocalHostName(), service, AF_INET );
 
     addrinfo* iter = hostAddresses;
 
     char addrName[INET6_ADDRSTRLEN];
-    void* address = sys->GetInAddress( iter->ai_addr );
+    void* address = NetworkSystem::GetInAddress( iter->ai_addr );
     inet_ntop( iter->ai_family, address, addrName, INET6_ADDRSTRLEN );
 
     m_socket = INVALID_SOCKET;

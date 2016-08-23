@@ -288,6 +288,10 @@ void FontRenderer::DrawFontText( const unsigned int& fontHeight, const Font& fon
 ///---------------------------------------------------------------------------------
 void FontRenderer::DrawFontTextOrtho( const unsigned int& fontHeight, const Font& font, const std::string& text, Vector3& int_out_Position, const Rgba& color /* = Rgba() */ )
 {
+    m_renderer->Enable( GL_BLEND );
+    m_renderer->Enable( GL_TEXTURE_2D );
+    m_renderer->BlendFunct( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+
     unsigned int programID = OpenGLRenderer::CreateOrGetShader( "Data/Shaders/textured" );
     const FontData& fontData = font.fontData;
     unsigned int fontSize = fontData.size;
@@ -321,6 +325,8 @@ void FontRenderer::DrawFontTextOrtho( const unsigned int& fontHeight, const Font
         m_renderer->DrawWithTextureOrtho( programID, layout, vertexes.size(), m_samplerID, pageFiles.at( pgVertsIter->first ) );
     }
 
+    m_renderer->Disable( GL_BLEND );
+    m_renderer->Disable( GL_TEXTURE_2D );
 }
 
 ///---------------------------------------------------------------------------------

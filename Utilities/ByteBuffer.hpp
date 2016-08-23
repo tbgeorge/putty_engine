@@ -29,13 +29,17 @@ public:
     /// Accessors
     ///---------------------------------------------------------------------------------
     size_t GetLength() const;
+    size_t GetRemainingSize() const { return m_maxSize - m_writeIndex; }
     size_t ReadBytes( void* out_data, size_t size );
+    size_t ReadString( char*& str );
 
     ///---------------------------------------------------------------------------------
     /// Mutators
     ///---------------------------------------------------------------------------------
     void SetLength( size_t len );
-    bool WriteBytes( void* data, size_t size );
+    virtual bool WriteBytes( void* data, size_t size );
+    virtual bool WriteByte( unsigned char byte );
+    virtual bool WriteString( const char* str );
 
 
 
