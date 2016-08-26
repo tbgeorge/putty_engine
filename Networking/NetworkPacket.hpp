@@ -11,6 +11,7 @@
 #include <vector>
 #include "Engine/Networking/NetworkAddress.hpp"
 #include "Engine/Utilities/ByteBuffer.hpp"
+#include <stdint.h>
 class NetworkMessage;
 
 #ifndef __included_NetworkPacket__
